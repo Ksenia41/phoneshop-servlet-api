@@ -39,8 +39,13 @@
             <td>${product.stock}</td>
         </tr>
     </c:forEach>
+    <form method="post">
+        <input type="hidden" name="productSearch" value="productSearch">
+        <input type="text" id="productSearch" name="productSearch"
+               value="${researchParam != null ?  researchParam : ""}">
+            <button type="submit" name="search" value="${cartItems.product.id}">Search</button>
+    </form>
 </table>
-
 </body>
 </html>
 

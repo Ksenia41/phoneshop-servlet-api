@@ -18,5 +18,7 @@
     </h1>
     <a href="${pageContext.servletContext.contextPath}/cart"><img class="cartIkon"
                                                                   src="http://image.flaticon.com/icons/png/128/9/9278.png"/></a>
+    <a href="${pageContext.servletContext.contextPath}/compare"><img class="cartIkon"
+                                                                  src="https://img.freepik.com/free-icon/justice_318-129118.jpg?size=338&ext=jpg"/></a>
 </header>
 </html>
