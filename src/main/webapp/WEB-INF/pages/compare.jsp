@@ -4,6 +4,9 @@
 
 <jsp:include page="/WEB-INF/common/header.jsp"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<fmt:setBundle basename="i18n.msg"/>
+<fmt:setLocale value="en"/>
 <html>
 <head>
     <title>Compare</title>
@@ -16,12 +19,6 @@
     <table>
         <thead>
         <tr>
-            <%--<td>ID</td>
-            <td>Code</td>
-            <td>Description</td>
-            <td>Price</td>
-            <td>Currency</td>
-            <td>Stock</td>--%>
             <td>Parameter</td>
                 <c:forEach var="compareItems" items="${compare.compareProducts}" varStatus="status">
                     <td>Product ${status.index + 1}</td>
@@ -66,8 +63,15 @@
         </tr><tr>
         <td></td>
         <c:forEach var="compareItems" items="${compare.compareProducts}" varStatus="status">
-
-                <td>
+            <td>
+            <input type="text" name="quantity" id="quantity"
+                   value="${empty param.addQuantity ?  param.addQuantity :1}"
+                   style="text-align: right">
+            <c:if test="${error}">
+                <label for = "quantity">
+                    <fmt:message key="${errorText}" />
+                </label>
+            </c:if>
                     <button type="submit" name="addToCart" value="${compareItems.id}">Add to cart</button>
                 </td>
 

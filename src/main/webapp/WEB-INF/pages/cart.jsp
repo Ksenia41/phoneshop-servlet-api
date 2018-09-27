@@ -36,7 +36,6 @@
                 <td>${cartItems.product.price}</td>
                 <td>${cartItems.product.currency}</td>
                 <td>${cartItems.product.stock}</td>
-                ${status.index}
                 <td>
                     <input type="hidden" name="productId" value="${cartItems.product.id}">
                     <input type="text" id="quantity${status.index}" name="quantity"
