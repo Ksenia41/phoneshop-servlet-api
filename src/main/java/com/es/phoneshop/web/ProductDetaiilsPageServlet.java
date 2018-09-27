@@ -1,6 +1,8 @@
 package com.es.phoneshop.web;
 
 import com.es.phoneshop.model.*;
+import com.es.phoneshop.model.compare.Compare;
+import com.es.phoneshop.model.compare.CompareService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,12 +17,14 @@ import java.util.Locale;
 public class ProductDetaiilsPageServlet extends HttpServlet {
     private ProductDao productDao;
     private CartService cartServise;
+    private CompareService compareService;
 
     @Override
     public void init() throws ServletException {
         super.init();
         productDao = ArrayListProductDao.getInstance();
         cartServise = CartService.getInstance();
+        compareService = CompareService.getInstance();
     }
 
     @Override
@@ -42,6 +46,13 @@ public class ProductDetaiilsPageServlet extends HttpServlet {
         Long productId = Long.parseLong(request.getPathInfo().substring(1));
         Product product = productDao.getProduct(productId);
         Locale locale = request.getLocale();
+        if(request.getParameter("addToCompare") != null){
+            Compare compare = compareService.getCompareList(request);
+            compareService.add(compare, product);
+            request.setAttribute("addSuccesfuly", "success");
+            doGet(request, response);
+            return;
+        }
         try {
             quantity = DecimalFormat.getInstance(locale).parse(request.getParameter("quantity")).intValue();
             if(quantity < 0){

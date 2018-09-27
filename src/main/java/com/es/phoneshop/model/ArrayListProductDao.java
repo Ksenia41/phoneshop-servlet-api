@@ -46,6 +46,11 @@ public class ArrayListProductDao implements ProductDao {
         products.parallelStream()
                 .filter(s -> s.getId().equals(id)).limit(1).forEach(s -> products.remove(s));
     }
-
+    public synchronized List<Product> searchProducts(String param) {
+        ArrayList<Product> result = new ArrayList<Product>();
+        return products.parallelStream()
+                .filter(s -> (s.getPrice().doubleValue() > 0 && s.getStock() != 0)).filter(s -> (s.getDescription().toLowerCase().contains(param) || s.getCode().toLowerCase().contains(param)))
+                .collect(Collectors.toList());
+    }
 
 }

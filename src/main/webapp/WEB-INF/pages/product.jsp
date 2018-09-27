@@ -53,6 +53,17 @@
                 <input type="submit" value="Add to cart">
             </td>
         </tr>
+        <tr>
+            <td>
+                <input type="hidden" name="addToCompare" value="addToCompare">
+                <input type="submit" value="Add to compare list">
+            </td>
+            <td>
+                <c:if test="${not empty addSuccesfuly}">
+                    ${addSuccesfuly}
+                </c:if>
+            </td>
+        </tr>
     </table>
 </form>
 </body>
